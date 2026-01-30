@@ -1,0 +1,21 @@
+{
+  "name": "insightflow-server",
+  "version": "1.0.0",
+  "description": "Backend for InsightFlow AI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "openai": "^4.52.0",
+    "body-parser": "^1.20.2",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
