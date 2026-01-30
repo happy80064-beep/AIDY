@@ -8,6 +8,8 @@ export interface ResearchContext {
   objectives: string;
   method: 'voice' | 'questionnaire';
   questionCount: number;
+  provider?: string;
+  model?: string;
 }
 
 export interface Question {

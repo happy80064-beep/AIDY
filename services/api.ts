@@ -1,3 +1,7 @@
+interface ImportMeta {
+  env: Record<string, string>;
+}
+
 const API_BASE_URL = import.meta.env.PROD ? '/api' : 'http://localhost:3001/api';
 
 export const generatePlan = async (context: any) => {
