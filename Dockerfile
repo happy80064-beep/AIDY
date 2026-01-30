@@ -20,7 +20,7 @@ RUN cd server && npm install
 RUN npm run build
 
 # Expose the port the app runs on
-EXPOSE 3001
+EXPOSE 8080
 
 # Define the command to run the app
 CMD ["node", "server/index.js"]
