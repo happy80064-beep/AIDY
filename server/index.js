@@ -401,6 +401,9 @@ process.on('unhandledRejection', (reason, promise) => {
     console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(`Working Directory: ${__dirname}`);
+    console.log(`Dist Path: ${distPath}`);
+    console.log(`Dist exists: ${fs.existsSync(distPath)}`);
 });
