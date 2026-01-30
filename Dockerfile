@@ -8,8 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (including devDependencies for build)
-# Using npm because package-lock.json is present
-RUN npm install
+# Using npm because package-lock.json is present. 
+# Force install devDependencies even if NODE_ENV is production.
+RUN npm install --production=false
 
 # Copy the rest of the application code
 COPY . .
