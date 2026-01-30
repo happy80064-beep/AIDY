@@ -2,6 +2,7 @@
   "name": "insightflow-server",
   "version": "1.0.0",
   "description": "Backend for InsightFlow AI",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
