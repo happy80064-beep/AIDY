@@ -401,9 +401,20 @@ process.on('unhandledRejection', (reason, promise) => {
     console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+// Global Error Handler Middleware
+app.use((err, req, res, next) => {
+    console.error('Global Error:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
+const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`Working Directory: ${__dirname}`);
     console.log(`Dist Path: ${distPath}`);
     console.log(`Dist exists: ${fs.existsSync(distPath)}`);
 });
+
+// Fix for 502 Bad Gateway (Keep-Alive Timeout)
+// Ensure Node's keepAliveTimeout is longer than the Load Balancer's idle timeout (usually 60s)
+server.keepAliveTimeout = 65000; // 65 seconds
+server.headersTimeout = 66000; // 66 seconds

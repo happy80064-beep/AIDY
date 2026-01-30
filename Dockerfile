@@ -4,23 +4,23 @@ FROM node:20-alpine
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json (root)
 COPY package*.json ./
 
-# Install dependencies (including devDependencies for build)
-# Using npm because package-lock.json is present. 
-# Force install devDependencies even if NODE_ENV is production.
+# Install root dependencies
 RUN npm install --production=false
 
 # Copy the rest of the application code
 COPY . .
 
-# Build the frontend and install server dependencies
-# The 'build' script in package.json runs: "tsc && vite build && cd server && npm install"
+# Explicitly install server dependencies to ensure they exist
+RUN cd server && npm install
+
+# Build the frontend
 RUN npm run build
 
 # Expose the port the app runs on
 EXPOSE 3001
 
 # Define the command to run the app
-CMD ["npm", "start"]
+CMD ["node", "server/index.js"]
